@@ -89,7 +89,8 @@
                                                   onchange="generarCuadriculaDiseño()">
                                         </td>
                                         <td>
-                                             <input type="number" id="lozas" value="1" onclick="generarRutas()">
+                                             <input type="number" id="lozas" value="1" min="1" max="50"
+                                                  onclick="generarRutas()">
                                         </td>
                                    </tr>
                               </tbody>
@@ -131,30 +132,20 @@
 
      <script>
 
-          if (localStorage.getItem("filas")) {
-               if (Number(localStorage.getItem("filas")) > 500) {
-                    localStorage.setItem("filas", 500)
+          function ajustarDatosReal(id, max, def) {
+               if (localStorage.getItem(id)) {
+                    if (Number(localStorage.getItem(id)) > max) {
+                         localStorage.setItem(id, max)
+                    }
+                    document.getElementById(id).value = localStorage.getItem(id)
+               } else {
+                    document.getElementById(id).value = def
                }
-               document.getElementById("filas").value = localStorage.getItem("filas")
-          } else {
-               document.getElementById("columnas").value = 50
           }
-          if (localStorage.getItem("columnas")) {
-               if (Number(localStorage.getItem("columnas")) > 500) {
-                    localStorage.setItem("columnas", 500)
-               }
-               document.getElementById("columnas").value = localStorage.getItem("columnas")
-          } else {
-               document.getElementById("columnas").value = 50
-          }
-          if (localStorage.getItem("lado")) {
-               if (Number(localStorage.getItem("lado")) > 100) {
-                    localStorage.setItem("lado", 100)
-               }
-               document.getElementById("lado").value = localStorage.getItem("lado")
-          } else {
-               document.getElementById("lado").value = 100
-          }
+
+          ajustarDatosReal("filas", 500, 50)
+          ajustarDatosReal("columnas", 500, 50)
+          ajustarDatosReal("lado", 100, 30)
 
           document.getElementById("lozas").value = localStorage.getItem("lozas") ?? 1
 
