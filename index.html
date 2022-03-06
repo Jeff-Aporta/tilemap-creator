@@ -221,7 +221,7 @@
                     html += `<tr>`
                     for (let columna = 0; columna < columnas; columna++) {
                          let index = matriz ? matriz[fila] ? matriz[fila][columna] ?? 0 : 0 : 0
-                         html += `<td style="${mostrar_guias ? "" : `border: none;color:transparent;`}background-image:url(${rutas[index] ?? ""});background-position: center;background-repeat: no-repeat;background-size: cover;width:${lado}px;height:${lado}px" id="t-${columna}-${fila}" contenteditable="true" onfocus="selectElementContents(this)" >`
+                         html += `<td style="${mostrar_guias ? "" : `border: none;color:transparent;`}background-image:url(${rutas[index] ?? ""});background-position: center;background-repeat: no-repeat;background-size: cover;width:${lado}px;height:${lado}px" id="t-${columna}-${fila}" contenteditable="true" onfocus="selectElementContents(this)" title="(${columna},${fila})">`
                          html += index
                          html += `</td>`
                     }
