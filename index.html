@@ -77,15 +77,15 @@
                               <tbody>
                                    <tr>
                                         <td>
-                                             <input type="number" id="columnas" value="10"
+                                             <input type="number" id="columnas" value="10" max="500" min="1"
                                                   onchange="generarCuadriculaDiseño()">
                                         </td>
                                         <td>
-                                             <input type="number" id="filas" value="10"
+                                             <input type="number" id="filas" value="10" max="500" min="1"
                                                   onchange="generarCuadriculaDiseño()">
                                         </td>
                                         <td>
-                                             <input type="number" id="lado" value="30"
+                                             <input type="number" id="lado" value="30" min="5" max="100"
                                                   onchange="generarCuadriculaDiseño()">
                                         </td>
                                         <td>
@@ -131,9 +131,31 @@
 
      <script>
 
-          document.getElementById("filas").value = localStorage.getItem("filas") ?? 10
-          document.getElementById("columnas").value = localStorage.getItem("columnas") ?? 10
-          document.getElementById("lado").value = localStorage.getItem("lado") ?? 30
+          if (localStorage.getItem("filas")) {
+               if (Number(localStorage.getItem("filas")) > 500) {
+                    localStorage.setItem("filas", 500)
+               }
+               document.getElementById("filas").value = localStorage.getItem("filas")
+          } else {
+               document.getElementById("columnas").value = 50
+          }
+          if (localStorage.getItem("columnas")) {
+               if (Number(localStorage.getItem("columnas")) > 500) {
+                    localStorage.setItem("columnas", 500)
+               }
+               document.getElementById("columnas").value = localStorage.getItem("columnas")
+          } else {
+               document.getElementById("columnas").value = 50
+          }
+          if (localStorage.getItem("lado")) {
+               if (Number(localStorage.getItem("lado")) > 100) {
+                    localStorage.setItem("lado", 100)
+               }
+               document.getElementById("lado").value = localStorage.getItem("lado")
+          } else {
+               document.getElementById("lado").value = 100
+          }
+
           document.getElementById("lozas").value = localStorage.getItem("lozas") ?? 1
 
           generarCuadriculaDiseño()
