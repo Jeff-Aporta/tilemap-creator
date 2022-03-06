@@ -101,7 +101,7 @@
                          <table cellspacing="0" cellpadding="0">
                               <tbody>
                                    <tr>
-                                        <td id="rutas" >
+                                        <td id="rutas">
                                         </td>
                                    </tr>
                               </tbody>
@@ -142,10 +142,11 @@
           function generarCódigoDeExportación() {
                let rutas = localStorage.getItem("rutas") ?? []
                let matriz = localStorage.getItem("matriz") ?? []
-               let txt = `let rutas = ${rutas}`
-               txt += `\n`
-               txt += `let matriz = ${matriz}`
-               document.getElementById("export-code").value = txt
+               let retorno = {
+                    rutas,
+                    matriz
+               }
+               document.getElementById("export-code").value = JSON.stringify(retorno)
           }
 
           function generarRutas() {
